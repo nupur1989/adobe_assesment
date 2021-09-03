@@ -32,7 +32,7 @@ Approach 1: Run service locally
 This should bring up service at http://localhost:8080
 
 To test endpoint -
-http://localhost:8080/romannumeral/1
+http://localhost:8080/romannumeral?query=1000
 
 Approach 2 : Run service using DockerFile
 
@@ -79,7 +79,7 @@ Option 1) - Install influxDB v2 locally (https://docs.influxdata.com/influxdb/v2
 6. For influxDb v2, you need to set up token. Go to settings, token, generate token if not already present. Copy and paste it in step 5 above.
 7. Once you complete influxDB installation and user setup, you start your service, you should be able to see measurements/tables populating in 
    your bucket 'adobe_db' in influxDB UI. 
-8. To see http request metric flowing,select http request measurement from UI, hit endpoint GET /romannumeral/{1}, you should see data flowing.
+8. To see http request metric flowing,select http request measurement from UI, hit endpoint GET /romannumeral?query={integer}, you should see data flowing.
 9. Visualization/charts are also part of UI console.
 
 Option 2) - Install influxDB v2 using docker image

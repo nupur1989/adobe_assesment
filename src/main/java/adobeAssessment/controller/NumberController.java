@@ -20,15 +20,15 @@ public class NumberController {
     static Logger log = Logger.getLogger(NumberController.class.getName());
 
     @RequestMapping(value = "/romannumeral", method = RequestMethod.GET)
-    public ResponseEntity<NumberEntity> getConversion(@RequestParam(name = "query") String input) {
+    public ResponseEntity<NumberEntity> getConversion(@RequestParam(name = "query") String integer) {
 
         try {
-            log.info("NumberController:Received request to convert number:" + input);
+            log.info("NumberController:Received request to convert number:" + integer);
 
-            if (input == null || input.isEmpty() || Integer.parseInt(input) < 0 || Integer.parseInt(input) > 3999) {
+            if (integer == null || integer.isEmpty() || Integer.parseInt(integer) < 0 || Integer.parseInt(integer) > 3999) {
                 return ResponseEntity.badRequest().build();
             }
-            NumberEntity numberEntity = numberService.getRoman(input);
+            NumberEntity numberEntity = numberService.getRoman(integer);
             return ResponseEntity.ok().body(numberEntity);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error happened.");
