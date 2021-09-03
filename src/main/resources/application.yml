@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:2222}
+  port: ${PORT:8080}
 
 logging:
   level:
@@ -15,7 +15,8 @@ management:
         bucket: adobe_db
         user-name: root
         org: adobe_org
-        token: Kv2JdNx7wtwi8LWgH7cGFdrn_7wSaXa381wDr-to1v67e8wc31MdTwEPpRxIS04NcGBQ_BGUq7d-T97kohBMbQ==
+        token: <token_key>
+
         password: password
     web.server.auto-time-requests: true
   endpoints.web.exposure.include: '*'
