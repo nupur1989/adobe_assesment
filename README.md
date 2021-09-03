@@ -91,3 +91,15 @@ Option 2) - Install influxDB v2 using docker image
 3. step 2) should bring up influxDB at http://localhost:8086/
 
 4. After this ,you can repeat steps 5) to 9) above from Option 1 above.
+
+
+InfluxDb V2 Token generation -
+<img width="1426" alt="Screen Shot 2021-09-03 at 1 13 58 AM" src="https://user-images.githubusercontent.com/8934946/131984234-c4ba6e75-58ef-4067-b50c-e00e5e901546.png">
+
+Spring boot metrics exposed through actuator on InfluxDB
+<img width="1368" alt="Screen Shot 2021-09-03 at 1 14 21 AM" src="https://user-images.githubusercontent.com/8934946/131984376-5b5b034b-5774-4d71-99cc-7affbabc630a.png">
+
+InfluxDB Bucket (adobe_db) data and dashboards :
+<img width="1341" alt="Screen Shot 2021-09-03 at 1 17 20 AM" src="https://user-images.githubusercontent.com/8934946/131984289-ebb32e8e-a0ae-4684-b870-4a9fee0c9914.png">
+
+
