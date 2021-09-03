@@ -92,8 +92,9 @@ Option 2) - Install influxDB v2 using docker image
 
 4. After this ,you can repeat steps 5) to 9) above from Option 1 above.
 
+Scrennshots
 
-InfluxDb V2 Token generation -
+InfluxDb V2 Token generation 
 <img width="1426" alt="Screen Shot 2021-09-03 at 1 13 58 AM" src="https://user-images.githubusercontent.com/8934946/131984234-c4ba6e75-58ef-4067-b50c-e00e5e901546.png">
 
 Spring boot metrics exposed through actuator on InfluxDB
@@ -102,4 +103,22 @@ Spring boot metrics exposed through actuator on InfluxDB
 InfluxDB Bucket (adobe_db) data and dashboards :
 <img width="1341" alt="Screen Shot 2021-09-03 at 1 17 20 AM" src="https://user-images.githubusercontent.com/8934946/131984289-ebb32e8e-a0ae-4684-b870-4a9fee0c9914.png">
 
+SpringBoot actuator endpoint :
+<img width="1362" alt="Screen Shot 2021-09-03 at 2 38 32 AM" src="https://user-images.githubusercontent.com/8934946/131985017-2b6afeb3-202a-410c-a5e0-881320d5b7e5.png">
 
+Service Endpoint:
+
+<img width="1211" alt="Screen Shot 2021-09-03 at 2 40 05 AM" src="https://user-images.githubusercontent.com/8934946/131985055-97e796b5-b093-435a-807b-9a0d10c64391.png">
+
+
+Future Scope:
+
+Dev Ops:
+
+Currenlty my docker File only contains java based image to bring up service. It can be enhanced with adding influxdb config to run both service and influx db containers side by side.
+Logging can be further enhanced to configure with ELK stack to further search logs on Kibbana.
+
+Backend:
+
+Currently I added unit test around service layer, we can add more unit tests around controller and dao layers as well. Also integration tests can be added once we have actual DB in place. 
+Exception handling can be further enhanced to create more error specific messages. Currently I just handle 400 and all other errors are categorized as 500.
