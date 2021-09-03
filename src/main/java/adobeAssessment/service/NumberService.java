@@ -7,6 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
+/*
+Usage :
+Symbol	I	V	X	L	C	D	M
+Value	1	5	10	50	100	500	1000
+*/
+
 @Service
 public class NumberService {
 
@@ -15,108 +21,99 @@ public class NumberService {
 
     static Logger log = Logger.getLogger(NumberService.class.getName());
 
-    public NumberEntity getRoman(String input) throws Exception{
+    public NumberEntity getRoman(String input) throws Exception {
 
         log.info("NumberService:Received request to convert number:" + input);
-        if(input == null || input.isEmpty())
+        if (input == null || input.isEmpty())
             throw new Exception("Bad input received");
 
         NumberEntity cachedResult = numberDao.getNumber(input);
-        if(cachedResult!=null){
+        if (cachedResult != null) {
             return cachedResult;
         }
 
         //if cache does not has it, calculate roman presentation and add it to cache, also return to client.
         StringBuilder sb = new StringBuilder();
         int num = Integer.parseInt(input);
-        while(num > 0){
+        while (num > 0) {
 
-            if(num >=1000){
+            if (num >= 1000) {
 
-                addNumber(num/1000, 'M', sb);
-                num = num%1000;
+                addNumber(num / 1000, 'M', sb);
+                num = num % 1000;
 
-            }
-            else if( num >=500){
+            } else if (num >= 500) {
 
-                if(num < 900){
+                if (num < 900) {
 
-                    addNumber(num/500, 'D', sb);
-                    num = num%500;
+                    addNumber(num / 500, 'D', sb);
+                    num = num % 500;
 
                 }
                 // 900 == 1000-100
-                else{
+                else {
 
-                    addNumbers('C', 'M',sb);
-                    num = num%100;
+                    addNumbers('C', 'M', sb);
+                    num = num % 100;
                 }
 
-            }
+            } else if (num >= 100) {
 
-            else if(num >= 100){
+                if (num < 400) {
 
-                if(num < 400){
-
-                    addNumber(num/100, 'C', sb);
-                    num = num%100;
+                    addNumber(num / 100, 'C', sb);
+                    num = num % 100;
 
                 }
                 // 400 = 500-100
-                else{
+                else {
 
                     addNumbers('C', 'D', sb);
-                    num = num%100;
+                    num = num % 100;
                 }
 
-            }
-
-            else if( num >= 50){
+            } else if (num >= 50) {
 
 
-                if(num < 90){
+                if (num < 90) {
 
-                    addNumber(num/50, 'L',sb);
-                    num = num%50;
+                    addNumber(num / 50, 'L', sb);
+                    num = num % 50;
                 }
 
                 //90 = 100-10
-                else{
+                else {
 
-                    addNumbers('X', 'C',sb);
-                    num = num%10;
+                    addNumbers('X', 'C', sb);
+                    num = num % 10;
                 }
 
-            }
+            } else if (num >= 10) {
 
-            else if(num >= 10){
+                if (num < 40) {
 
-                if(num < 40 ){
-
-                    addNumber(num/10, 'X',sb);
-                    num = num%10;
+                    addNumber(num / 10, 'X', sb);
+                    num = num % 10;
                 }
                 //  40 = 50-10
-                else{
+                else {
 
-                    addNumbers('X', 'L',sb);
-                    num = num%10;
+                    addNumbers('X', 'L', sb);
+                    num = num % 10;
                 }
 
-            }
-
-            else if(num >=5){
+            } else if (num >= 5) {
                 //5,4..8
-                if(num < 9){
+                if (num < 9) {
 
-                    addNumber(num/5, 'V',sb);
-                    num = num%5;
+                    addNumber(num / 5, 'V', sb);
+                    num = num % 5;
                 }
                 //9 = 10-1
-                else{
+                else {
 
-                    addNumbers('I', 'X',sb);
-                    num =0;
+                    addNumbers('I', 'X', sb);
+                    num = 0;
                 }
 
             }
@@ -144,15 +141,15 @@ public class NumberService {
         return response;
     }
 
-    void addNumber(int n , char ch, StringBuilder sb){
+    void addNumber(int n, char ch, StringBuilder sb) {
         int i = 0;
-        while(i < n){
+        while (i < n) {
             sb.append(ch);
             i++;
         }
     }
 
-    void addNumbers(char ch1, char ch2, StringBuilder sb){
+    void addNumbers(char ch1, char ch2, StringBuilder sb) {
         sb.append(ch1).append(ch2);
     }
 }

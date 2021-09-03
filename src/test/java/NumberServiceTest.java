@@ -10,8 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class NumberServiceTest {
@@ -44,5 +43,13 @@ public class NumberServiceTest {
 
         assert (entityCaptor.getValue().getInput().equals("1"));
         assert (entityCaptor.getValue().getOutput().equals("I"));
+    }
+
+    @Test(expected = Exception.class)
+    public void testGetConversionBadInput() throws Exception {
+        when(numberService.getRoman(""))
+                .thenThrow(Exception.class);
+
+        numberService.getRoman("");
     }
 }
